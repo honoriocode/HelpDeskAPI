@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "76qx1gjG3egEIrPgPOeblCHHZuGeQlM9vJPRjNm4nllUXekOOgVqTMr29TXR2uxKiktba7EesPXs/z7g+lZv2g==",
+  "dgSpecHash": "9UyZ9cEkLaxHNU7h4htNKruW9jOVLSeUliELirnQGd0GanB9caVi/kGs0Lotan3Fe6xlsz0+glBSWEA9Sr9EYA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Remakker\\Source\\Repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj",
+  "projectFilePath": "C:\\Users\\Remakker\\source\\repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Remakker\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\Remakker\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
