@@ -1,66 +1,70 @@
-﻿using AutoMapper;
-using FluentResults;
-using HelpDeskApi._2___Data.Repositories;
-using HelpDeskApi.Data.DTOs;
+﻿using HelpDeskApi.Data.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("usuarios")]
 public class UsuarioController : ControllerBase
 {
     private readonly IUsuarioService _usuarioService;
-    private UsuarioRepository respAtualizar;
 
-    private readonly IMapper _mapper;
-
-    public UsuarioController(IUsuarioService usuarioService, IMapper mapper)
+    public UsuarioController(IUsuarioService usuarioService)
     {
         _usuarioService = usuarioService;
-        _mapper = mapper;
     }
 
-    // GET api/usuario
-    [HttpGet("find/{name?}")]
-    public async Task<IActionResult> Get(int id)
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
     {
-        var usuariosDTO = _usuarioService.GetAllUsuarios();
+        var usuariosDTO = await _usuarioService.GetAll();
         return Ok(usuariosDTO);
     }
 
-    // GET api/usuario/{id}
     [HttpGet("{id}")]
-    public IActionResult GetById(Guid id)
+    public async Task<IActionResult> GetById(Guid id)
     {
-        var usuarioDTO = _usuarioService.GetUsuarioById(id);
+        var usuarioDTO = await _usuarioService.GetById(id);
         return Ok(usuarioDTO);
     }
 
-    // POST api/usuario
     [HttpPost]
-    public IActionResult Post([FromBody] UsuarioDTO usuarioDTO)
+    public async Task<IActionResult> Post([FromBody] UsuarioDTO usuarioDTO)
     {
-
-        _usuarioService.AddUsuario(usuarioDTO, _usuarioService.Get_usuarioRepository());
-        return CreatedAtAction(nameof(GetById), new { id = usuarioDTO.Id }, usuarioDTO);
-    }
-
-    public IUsuarioService Get_usuarioService()
-    {
-        return _usuarioService;
-    }
-
-    // PUT api/usuario/{id}
-    [HttpPut("{id}")]
-    public IActionResult Put(Guid id, [FromBody] UsuarioDTO usuarioDTO)
-    {
-        respAtualizar = new UsuarioRepository();
-
-        if (respAtualizar.IsFailed)
+        try
         {
-            return NotFound();
+            await _usuarioService.Add(usuarioDTO);
+            return CreatedAtAction(nameof(GetById), new { id = usuarioDTO.Id }, usuarioDTO);
         }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 
-        return NoContent();
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(Guid id, [FromBody] UsuarioDTO usuarioDTO)
+    {
+        try
+        {
+            await _usuarioService.Update(id, usuarioDTO);
+            return Ok("O usuário foi atualizado com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        try
+        {
+            await _usuarioService.Delete(id);
+            return Ok("O usuário foi deletado com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

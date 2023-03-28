@@ -1,72 +1,53 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using HelpDeskApi.Data;
 using HelpDeskApi.Domain.Models;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
+namespace HelpDeskApi._2___Data.Repositories;
 
-
-namespace HelpDeskApi._2___Data.Repositories
+public class UsuarioRepository : IRepository<Usuario>
 {
-    public class UsuarioRepository : IRepository<Domain.Models.Usuario>
+    private readonly HelpDeskContext _dbContext;
+    private readonly DbSet<Usuario> _dbSet;
+
+    public UsuarioRepository(HelpDeskContext dbContext)
     {
-        private readonly DbContext _dbContext;
-
-        public bool IsFailed { get; internal set; }
-
-        public UsuarioRepository(DbContext dbContext)
-        {
-            _dbContext = dbContext;
-        }
-
-        public UsuarioRepository()
-        {
-        }
-
-        public IEnumerable<Domain.Models.Usuario> GetAll()
-        {
-            return _dbContext.Set<Domain.Models.Usuario>();
-        }
-
-        public Domain.Models.Usuario GetById(Guid id)
-        {
-            return _dbContext.Set<Usuario>().SingleOrDefault(u => u.Id == id);
-        }
-
-        public void Add(Domain.Models.Usuario usuario)
-        {
-            _dbContext.Set<Domain.Models.Usuario>().Add(usuario);
-            _dbContext.SaveChanges();
-        }
-
-        public void Update(Domain.Models.Usuario usuario)
-        {
-            _dbContext.Set<Domain.Models.Usuario>().Update(usuario);
-            _dbContext.SaveChanges();
-        }
-       
-        public void Remove(Domain.Models.Usuario usuario)
-        {
-            _dbContext.Set<Domain.Models.Usuario>().Remove(usuario);
-            _dbContext.SaveChanges();
-        }
-
-        object IRepository<Domain.Models.Usuario>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        object IRepository<Domain.Models.Usuario>.GetById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remove(object usuario)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(object usuario)
-        {
-            throw new NotImplementedException();
-        }
+        _dbContext = dbContext;
+        _dbSet = _dbContext.Set<Usuario>();
     }
 
+    public async Task<IEnumerable<Usuario>> GetAll()
+    {
+        return await _dbSet.AsNoTracking().ToListAsync();
+    }
+
+
+    public async Task<IEnumerable<Usuario>> GetManyWhere(Expression<Func<Usuario, bool>> condition)
+    {
+        return await _dbSet.Where(condition).ToListAsync();
+    }
+
+    public async Task<Usuario> GetOneWhere(Expression<Func<Usuario, bool>> condition)
+    {
+        return (await _dbSet.SingleOrDefaultAsync(condition))!;
+    }
+
+    public async Task<Usuario> Add(Usuario usuario)
+    {
+        await _dbSet.AddAsync(usuario);
+        _dbContext.SaveChanges();
+        return usuario;
+    }
+
+    public void Update(Usuario usuario)
+    {
+        _dbSet.Update(usuario);
+        _dbContext.SaveChanges();
+    }
+
+    public void Remove(Usuario usuario)
+    {
+        _dbSet.Remove(usuario);
+        _dbContext.SaveChanges();
+    }
 }

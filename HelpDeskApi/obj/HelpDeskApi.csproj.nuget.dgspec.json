@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\EnzoGodoy\\Desktop\\PersonalProjects\\HelpDeskApi\\HelpDeskApi\\HelpDeskApi.csproj": {}
+    "C:\\Users\\Remakker\\Source\\Repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\EnzoGodoy\\Desktop\\PersonalProjects\\HelpDeskApi\\HelpDeskApi\\HelpDeskApi.csproj": {
+    "C:\\Users\\Remakker\\Source\\Repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\EnzoGodoy\\Desktop\\PersonalProjects\\HelpDeskApi\\HelpDeskApi\\HelpDeskApi.csproj",
+        "projectUniqueName": "C:\\Users\\Remakker\\Source\\Repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj",
         "projectName": "HelpDeskApi",
-        "projectPath": "C:\\Users\\EnzoGodoy\\Desktop\\PersonalProjects\\HelpDeskApi\\HelpDeskApi\\HelpDeskApi.csproj",
-        "packagesPath": "C:\\Users\\EnzoGodoy\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\EnzoGodoy\\Desktop\\PersonalProjects\\HelpDeskApi\\HelpDeskApi\\obj\\",
+        "projectPath": "C:\\Users\\Remakker\\Source\\Repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj",
+        "packagesPath": "C:\\Users\\Remakker\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Remakker\\Source\\Repos\\HelpDeskAPI\\HelpDeskApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\EnzoGodoy\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Remakker\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -93,6 +93,10 @@
               "target": "Package",
               "version": "[7.0.4, )"
             },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
@@ -117,7 +121,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

@@ -1,7 +1,5 @@
 ﻿using AutoMapper;
-using HelpDeskApi.Data.DTOs;
 using HelpDeskApi.Data.DTOs.Chamado;
-using HelpDeskApi.Domain.Models;
 
 namespace HelpDeskApi.Profiles
 {
@@ -11,6 +9,5 @@ namespace HelpDeskApi.Profiles
         {
             CreateMap<ChamadoDTO, Chamado>();
         }
-
     }
 }

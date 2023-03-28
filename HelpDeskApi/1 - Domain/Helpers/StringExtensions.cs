@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.Diagnostics;
-
-namespace HelpDeskApi.Domain.Helpers;
+﻿namespace HelpDeskApi.Domain.Helpers;
 
 public static class StringExtensions
 {

@@ -39,26 +39,6 @@ namespace HelpDeskApi.Data.Repositories
             _dbContext.Set<TipoUsuario>().Remove(tipoUsuario);
             _dbContext.SaveChanges();
         }
-
-        object IRepository<TipoUsuario>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        object IRepository<TipoUsuario>.GetById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Remove(object usuario)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(object usuario)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
 

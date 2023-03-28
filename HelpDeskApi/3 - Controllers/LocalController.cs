@@ -7,17 +7,17 @@ namespace HelpDeskApi._4___Controllers
     [Route("locais")]
     public class LocalController : ControllerBase
     {
-        private readonly LocalService localService;
+        private readonly LocalService _localService;
 
         public LocalController(LocalService localService)
         {
-            this.localService = localService;
+            _localService = localService;
         }
 
         [HttpGet("{id}")]
         public IActionResult GetById(Guid id)
         {
-            var local = localService.GetLocalById(id);
+            var local = _localService.GetLocalById(id);
 
             if (local == null)
             {
@@ -30,7 +30,7 @@ namespace HelpDeskApi._4___Controllers
         [HttpPost]
         public IActionResult Adiciona([FromBody] Local local)
         {
-            var result = localService.AdicionaLocal(local, out var errors);
+            var result = _localService.AdicionaLocal(local, out var errors);
 
             if (result is BadRequestObjectResult)
             {

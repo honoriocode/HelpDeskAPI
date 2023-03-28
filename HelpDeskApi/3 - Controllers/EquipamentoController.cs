@@ -8,17 +8,17 @@ namespace HelpDeskApi._4___Controllers
     [Route("equipamentos")]
     public class EquipamentoController : ControllerBase
     {
-        private readonly EquipamentoService equipamentoService;
+        private readonly EquipamentoService _equipamentoService;
 
         public EquipamentoController(EquipamentoService equipamentoService)
         {
-            this.equipamentoService = equipamentoService;
+            _equipamentoService = equipamentoService;
         }
 
         [HttpPost]
         public IActionResult Adiciona([FromBody] Equipamento equipamento)
         {
-            equipamentoService.AdicionaEquipamento(equipamento);
+            _equipamentoService.AdicionaEquipamento(equipamento);
 
             return CreatedAtAction(nameof(Adiciona), equipamento);
         }

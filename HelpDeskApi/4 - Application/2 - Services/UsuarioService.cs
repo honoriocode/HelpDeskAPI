@@ -1,102 +1,79 @@
-﻿using HelpDeskApi._2___Data.Repositories;
+﻿using AutoMapper;
+using HelpDeskApi._2___Data.Repositories;
 using HelpDeskApi.Data.DTOs;
 using HelpDeskApi.Domain.Models;
 
 namespace System.Linq;
 
-public interface IUsuarioService
-{
-    IEnumerable<UsuarioDTO> GetAllUsuarios();
-    UsuarioDTO GetUsuarioById(Guid id);
-    void AddUsuario(UsuarioDTO usuarioDTO, object v);
-    void UpdateUsuario(Guid id, UsuarioDTO usuarioDTO);
-    void RemoveUsuario(Guid id);
-    object Get_usuarioRepository();
-}
-
 public class UsuarioService : IUsuarioService
 {
     private readonly IRepository<Usuario> _usuarioRepository;
+    private readonly IMapper _mapper;
 
-    public UsuarioService(IRepository<Usuario> usuarioRepository)
+    public UsuarioService(IRepository<Usuario> usuarioRepository, IMapper mapper)
     {
         _usuarioRepository = usuarioRepository;
+        _mapper = mapper;
     }
 
-    public IEnumerable<UsuarioDTO> GetAllUsuarios()
+    public async Task<IEnumerable<UsuarioDTO>> GetAll()
     {
-        List<Usuario> usuarios = (List<Usuario>)_usuarioRepository.GetAll();
-        return usuarios.Select(u => new UsuarioDTO(u));
+        var usuarios = await _usuarioRepository.GetAll();
+        var usuariosMapped = _mapper.Map<IEnumerable<UsuarioDTO>>(usuarios);
+
+        return usuariosMapped;
     }
 
-    public UsuarioDTO GetUsuarioById(Guid id)
+    public async Task<UsuarioDTO> GetById(Guid id)
     {
-        var usuario = _usuarioRepository.GetById(id);
+        var usuario = await _usuarioRepository.GetOneWhere(u => u.Id == id);
+        var usuarioMapped = _mapper.Map<UsuarioDTO>(usuario);
 
-        if (usuario == null)
-            throw new Exception("Usuário não encontrado");
-
-        return new UsuarioDTO(usuario);
+        return usuarioMapped;
     }
 
-    public IRepository<Usuario> Get_usuarioRepository()
+    public async Task<UsuarioDTO> Add(UsuarioDTO usuarioDTO)
     {
-        return _usuarioRepository;
+        var usuarioExistente = await _usuarioRepository.GetOneWhere
+            (u => u.Login == usuarioDTO.Login);
+
+        if (usuarioExistente is not null)
+            throw new InvalidOperationException("Já existe um usuário com o mesmo Login.");
+
+        var usuarioMapped = _mapper.Map<Usuario>(usuarioDTO);
+        var usuario = await _usuarioRepository.Add(usuarioMapped);
+        var usuarioResponse = _mapper.Map<UsuarioDTO>(usuario);
+
+        return usuarioResponse;
     }
 
-    public void AddUsuario(UsuarioDTO usuarioDTO, UsuarioRepository _usuarioRepository)
+    public async Task Update(Guid id, UsuarioDTO usuarioDTO)
     {
-        if (usuarioDTO == null)
-            throw new Exception("Dados inválidos");
+        var usuarioExistente = await _usuarioRepository.GetOneWhere
+            (u => u.Id == id);
 
-        var usuario = new Usuario(Guid.NewGuid());
-        usuario.Nome = usuarioDTO.Nome;
-        usuario.Login = usuarioDTO.Login;
-        usuario.Senha = usuarioDTO.Senha;
-        usuario.TipoUsuarioId = usuarioDTO.TipoUsuarioId;
-        usuario.Contato = usuarioDTO.Contato;
-        _usuarioRepository.Add(usuario);
+        if (usuarioExistente is null)
+            throw new InvalidOperationException($"Não existe nenhum usuário com o Id {id}");
+
+        if (await _usuarioRepository.GetOneWhere
+                    (u => u.Login == usuarioDTO.Login
+                    && u.Id != id) is not null)
+            throw new InvalidOperationException("Já existe um usuário com o mesmo Login.");
+
+        var usuarioUpdate = _mapper.Map<Usuario>(usuarioDTO);
+        var usuarioMapped = _mapper.Map(usuarioUpdate, usuarioExistente);
+
+        _usuarioRepository.Update(usuarioMapped);
     }
 
-
-
-    public void UpdateUsuario(Guid id, UsuarioDTO usuarioDTO)
+    public async Task Delete(Guid id)
     {
-        if (usuarioDTO == null || usuarioDTO.Id != id)
-            throw new Exception("Dados inválidos");
+        var usuarioExistente = await _usuarioRepository.GetOneWhere
+            (u => u.Id == id);
 
-        var usuarioRep = new UsuarioRepository();
+        if (usuarioExistente is null)
+            throw new InvalidOperationException($"Não existe nenhum usuário com o Id {id}");
 
-        if (usuarioDTO == null)
-            throw new Exception("Usuário não encontrado");
-
-        usuarioDTO.Nome = usuarioDTO.Nome;
-        usuarioDTO.Login = usuarioDTO.Login;
-        usuarioDTO.Senha = usuarioDTO.Senha;
-        usuarioDTO.TipoUsuarioId = usuarioDTO.TipoUsuarioId;
-        usuarioDTO.Contato = usuarioDTO.Contato;
-
-        usuarioRep.Update(usuarioDTO);
-    }
-
-    public void RemoveUsuario(Guid id)
-    {
-        var usuario = _usuarioRepository.GetById(id);
-
-        if (usuario == null)
-            throw new Exception("Usuário não encontrado");
-
-        _usuarioRepository.Remove(usuario);
-    }
-
-    public void AddUsuario(UsuarioDTO usuarioDTO, object v)
-    {
-        throw new NotImplementedException();
-    }
-
-    object IUsuarioService.Get_usuarioRepository()
-    {
-        throw new NotImplementedException();
+        _usuarioRepository.Remove(usuarioExistente);
     }
 }
-
