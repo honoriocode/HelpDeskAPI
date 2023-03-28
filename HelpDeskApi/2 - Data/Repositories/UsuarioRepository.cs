@@ -1,53 +1,59 @@
-﻿using HelpDeskApi.Domain.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using HelpDeskApi.Domain.Models;
 
 
 
 namespace HelpDeskApi._2___Data.Repositories
 {
-    public class UsuarioRepository : IRepository<Usuario>
+    public class UsuarioRepository : IRepository<Domain.Models.Usuario>
     {
         private readonly DbContext _dbContext;
+
+        public bool IsFailed { get; internal set; }
 
         public UsuarioRepository(DbContext dbContext)
         {
             _dbContext = dbContext;
         }
 
-        public IEnumerable<Usuario> GetAll()
+        public UsuarioRepository()
         {
-            return _dbContext.Set<Usuario>();
         }
 
-        public Usuario GetById(Guid id)
+        public IEnumerable<Domain.Models.Usuario> GetAll()
+        {
+            return _dbContext.Set<Domain.Models.Usuario>();
+        }
+
+        public Domain.Models.Usuario GetById(Guid id)
         {
             return _dbContext.Set<Usuario>().SingleOrDefault(u => u.Id == id);
         }
 
-        public void Add(Usuario usuario)
+        public void Add(Domain.Models.Usuario usuario)
         {
-            _dbContext.Set<Usuario>().Add(usuario);
+            _dbContext.Set<Domain.Models.Usuario>().Add(usuario);
             _dbContext.SaveChanges();
         }
 
-        public void Update(Usuario usuario)
+        public void Update(Domain.Models.Usuario usuario)
         {
-            _dbContext.Set<Usuario>().Update(usuario);
+            _dbContext.Set<Domain.Models.Usuario>().Update(usuario);
             _dbContext.SaveChanges();
         }
        
-        public void Remove(Usuario usuario)
+        public void Remove(Domain.Models.Usuario usuario)
         {
-            _dbContext.Set<Usuario>().Remove(usuario);
+            _dbContext.Set<Domain.Models.Usuario>().Remove(usuario);
             _dbContext.SaveChanges();
         }
 
-        object IRepository<Usuario>.GetAll()
+        object IRepository<Domain.Models.Usuario>.GetAll()
         {
             throw new NotImplementedException();
         }
 
-        object IRepository<Usuario>.GetById(Guid id)
+        object IRepository<Domain.Models.Usuario>.GetById(Guid id)
         {
             throw new NotImplementedException();
         }

@@ -2,13 +2,16 @@
 using HelpDeskApi.Data.DTOs;
 using HelpDeskApi.Domain.Models;
 
+namespace System.Linq;
+
 public interface IUsuarioService
 {
     IEnumerable<UsuarioDTO> GetAllUsuarios();
     UsuarioDTO GetUsuarioById(Guid id);
-    void AddUsuario(UsuarioDTO usuarioDTO);
+    void AddUsuario(UsuarioDTO usuarioDTO, object v);
     void UpdateUsuario(Guid id, UsuarioDTO usuarioDTO);
     void RemoveUsuario(Guid id);
+    object Get_usuarioRepository();
 }
 
 public class UsuarioService : IUsuarioService
@@ -22,7 +25,7 @@ public class UsuarioService : IUsuarioService
 
     public IEnumerable<UsuarioDTO> GetAllUsuarios()
     {
-        var usuarios = _usuarioRepository.GetAll();
+        List<Usuario> usuarios = (List<Usuario>)_usuarioRepository.GetAll();
         return usuarios.Select(u => new UsuarioDTO(u));
     }
 
@@ -41,7 +44,7 @@ public class UsuarioService : IUsuarioService
         return _usuarioRepository;
     }
 
-    public void AddUsuario(UsuarioDTO usuarioDTO, IRepository<Usuario> _usuarioRepository)
+    public void AddUsuario(UsuarioDTO usuarioDTO, UsuarioRepository _usuarioRepository)
     {
         if (usuarioDTO == null)
             throw new Exception("Dados inválidos");
@@ -55,23 +58,25 @@ public class UsuarioService : IUsuarioService
         _usuarioRepository.Add(usuario);
     }
 
+
+
     public void UpdateUsuario(Guid id, UsuarioDTO usuarioDTO)
     {
         if (usuarioDTO == null || usuarioDTO.Id != id)
             throw new Exception("Dados inválidos");
 
-        var usuario = _usuarioRepository.GetById(id);
+        var usuarioRep = new UsuarioRepository();
 
-        if (usuario == null)
+        if (usuarioDTO == null)
             throw new Exception("Usuário não encontrado");
 
-        usuario.Nome = usuarioDTO.Nome;
-        usuario.Login = usuarioDTO.Login;
-        usuario.Senha = usuarioDTO.Senha;
-        usuario.TipoUsuarioId = usuarioDTO.TipoUsuarioId;
-        usuario.Contato = usuarioDTO.Contato;
+        usuarioDTO.Nome = usuarioDTO.Nome;
+        usuarioDTO.Login = usuarioDTO.Login;
+        usuarioDTO.Senha = usuarioDTO.Senha;
+        usuarioDTO.TipoUsuarioId = usuarioDTO.TipoUsuarioId;
+        usuarioDTO.Contato = usuarioDTO.Contato;
 
-        _usuarioRepository.Update(usuario);
+        usuarioRep.Update(usuarioDTO);
     }
 
     public void RemoveUsuario(Guid id)
@@ -82,6 +87,16 @@ public class UsuarioService : IUsuarioService
             throw new Exception("Usuário não encontrado");
 
         _usuarioRepository.Remove(usuario);
+    }
+
+    public void AddUsuario(UsuarioDTO usuarioDTO, object v)
+    {
+        throw new NotImplementedException();
+    }
+
+    object IUsuarioService.Get_usuarioRepository()
+    {
+        throw new NotImplementedException();
     }
 }
 

@@ -2,22 +2,25 @@
 using Flunt.Validations;
 using HelpDeskApi.Domain.Core;
 
-namespace HelpDeskApi.Domain.ValueObjects;
-
-public sealed class Cep : ValueObject
+namespace HelpDeskApi.Domain.ValueObjects
 {
-    private Cep()
-    { }
-
-    public Cep(string numero)
+    public sealed class Cep : ValueObject
     {
-        Numero = numero;
+        private Cep()
+        { }
 
-        AddNotifications(new Contract<Cep>()
-            .Requires()
-            .IsZipCode(Numero, "Cep.Numero", "CEP inválido.")
-            );
+        public Cep(string numero)
+        {
+            Numero = numero;
+
+            AddNotifications(new Contract<Cep>()
+                .Requires()
+                .IsZipCode(Numero, "Cep.Numero", "CEP inválido.")
+                );
+        }
+
+        public string Numero { get; private set; }
+
     }
 
-    public string Numero { get; private set; }
 }

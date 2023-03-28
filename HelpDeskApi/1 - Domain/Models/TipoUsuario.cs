@@ -15,5 +15,4 @@ public class TipoUsuario : Entidade
     public bool PodeAtualizar { get; private set; }
     public bool PodeDeletar { get; private set; }
 
-    public Usuario UsuarioId { get; set; }
 }

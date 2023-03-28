@@ -5,8 +5,7 @@ namespace HelpDeskApi.Data.DTOs.Equipamento
 {
     public class EquipamentoDTO
     {
-        public Guid LocalId { get; private set; }
-
+        
         public Fornecedor Fornecedor { get; private set; }
 
         [Required(ErrorMessage = "Insira a data de emissão")]

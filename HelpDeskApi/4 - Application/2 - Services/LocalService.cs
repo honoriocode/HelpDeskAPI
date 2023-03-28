@@ -20,16 +20,6 @@ namespace HelpDeskApi._4___Application._2___Services
         {
             errors = new List<string>();
 
-            if (!local.IsValid)
-            {
-                local.Notifications.ToList().ForEach(n =>
-                {
-                    errors.Add($"{n.Key} | {n.Message}");
-                });
-
-                return new BadRequestObjectResult(errors);
-            }
-
             locais.Add(local);
             return new CreatedAtActionResult(nameof(GetLocalById), "Local", new { id = local.Id }, local);
         }

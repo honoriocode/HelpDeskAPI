@@ -14,7 +14,7 @@ namespace HelpDeskApi.Data.DTOs
         public Guid TipoUsuarioId { get; set; }
         public int Contato { get; set; }
 
-        public UsuarioDTO(Usuario usuario)
+        public UsuarioDTO(Domain.Models.Usuario usuario)
         {
             Id = usuario.Id;
             Nome = usuario.Nome;
@@ -29,5 +29,4 @@ namespace HelpDeskApi.Data.DTOs
             this.usuario = usuario;
         }
     }
-
 }

@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "jc3Zi+MSVUpl2KbgI8TjxammMIAUxy/MZOlodP3b4DM6fnCpLwgBr6zR1ArKYEp7FVFUrRcGwwZ5Zourtryt1w==",
+  "dgSpecHash": "rYmA/K/YeV6zte3LpqEn8MSpFpuDtovyFHE/nMIUXA8FzDvqp8oTAujb42aUKHMGIGXV/PZixCyEY+UenPq1vg==",
   "success": true,
   "projectFilePath": "C:\\Users\\EnzoGodoy\\Desktop\\PersonalProjects\\HelpDeskApi\\HelpDeskApi\\HelpDeskApi.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\EnzoGodoy\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
+    "C:\\Users\\EnzoGodoy\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\EnzoGodoy\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
     "C:\\Users\\EnzoGodoy\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Users\\EnzoGodoy\\.nuget\\packages\\fluentresults\\3.15.2\\fluentresults.3.15.2.nupkg.sha512",
