@@ -232,3 +232,5 @@ C:\Users\EnzoGodoy\Source\Repos\HelpDeskAPI\HelpDeskApi\obj\Debug\net7.0\scopedc
 C:\Users\EnzoGodoy\Source\Repos\HelpDeskAPI\HelpDeskApi\obj\Debug\net7.0\HelpDeskApi.csproj.CopyComplete
 C:\Users\EnzoGodoy\Source\Repos\HelpDeskAPI\HelpDeskApi\obj\Debug\net7.0\HelpDeskApi.genruntimeconfig.cache
 C:\Users\EnzoGodoy\Source\Repos\HelpDeskAPI\HelpDeskApi\obj\Debug\net7.0\ref\HelpDeskApi.dll
+C:\Users\EnzoGodoy\Source\Repos\HelpDeskAPI\HelpDeskApi\bin\Debug\net7.0\appSettings.Production.json
+C:\Users\EnzoGodoy\Source\Repos\HelpDeskAPI\HelpDeskApi\bin\Debug\net7.0\appSettings.Testing.json
