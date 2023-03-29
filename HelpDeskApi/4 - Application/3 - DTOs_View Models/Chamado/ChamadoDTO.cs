@@ -17,6 +17,6 @@ namespace HelpDeskApi.Data.DTOs.Chamado
         public DateTime CriadoEm { get; protected set; }
         public DateTime AtualizadoEm { get; protected set; }
         public bool Status { get; protected set; }
-
+        public object Id { get; internal set; }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using HelpDeskApi._2___Data.Repositories;
 using HelpDeskApi.Data;
+using HelpDeskApi.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace HelpDesk.Infrastructure.Repositories
 {
@@ -45,22 +47,37 @@ namespace HelpDesk.Infrastructure.Repositories
             _context.SaveChanges();
         }
 
-        object IRepository<Equipamento>.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        object IRepository<Equipamento>.GetById(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Remove(object usuario)
         {
             throw new NotImplementedException();
         }
 
         public void Update(object usuario)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<IEnumerable<Equipamento>> IRepository<Equipamento>.GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Equipamento>> GetManyWhere(Expression<Func<Usuario, bool>> condition)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Equipamento> GetOneWhere(Expression<Func<Usuario, bool>> condition)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<Equipamento> IRepository<Equipamento>.Add(Equipamento entidade)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(Equipamento entidade)
         {
             throw new NotImplementedException();
         }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using HelpDeskApi._2___Data.Repositories;
+using System.Linq.Expressions;
+using HelpDeskApi.Domain.Models;
 
 namespace HelpDeskApi.Data.Repositories
 {
@@ -38,6 +40,26 @@ namespace HelpDeskApi.Data.Repositories
         {
             _dbContext.Set<TipoUsuario>().Remove(tipoUsuario);
             _dbContext.SaveChanges();
+        }
+
+        Task<IEnumerable<TipoUsuario>> IRepository<TipoUsuario>.GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<TipoUsuario>> GetManyWhere(Expression<Func<Usuario, bool>> condition)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<TipoUsuario> GetOneWhere(Expression<Func<Usuario, bool>> condition)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<TipoUsuario> IRepository<TipoUsuario>.Add(TipoUsuario entidade)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Remakker\\source\\repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj": {}
+    "C:\\Users\\EnzoGodoy\\source\\repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Remakker\\source\\repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj": {
+    "C:\\Users\\EnzoGodoy\\source\\repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Remakker\\source\\repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj",
+        "projectUniqueName": "C:\\Users\\EnzoGodoy\\source\\repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj",
         "projectName": "HelpDeskApi",
-        "projectPath": "C:\\Users\\Remakker\\source\\repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj",
-        "packagesPath": "C:\\Users\\Remakker\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Remakker\\source\\repos\\HelpDeskAPI\\HelpDeskApi\\obj\\",
+        "projectPath": "C:\\Users\\EnzoGodoy\\source\\repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj",
+        "packagesPath": "C:\\Users\\EnzoGodoy\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\EnzoGodoy\\source\\repos\\HelpDeskAPI\\HelpDeskApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Remakker\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\EnzoGodoy\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -49,10 +49,6 @@
               "target": "Package",
               "version": "[12.0.0, )"
             },
-            "EntityFramework": {
-              "target": "Package",
-              "version": "[6.4.4, )"
-            },
             "FluentResults": {
               "target": "Package",
               "version": "[3.15.2, )"
@@ -80,10 +76,6 @@
               "version": "[7.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.Relational": {
-              "target": "Package",
-              "version": "[7.0.4, )"
-            },
-            "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[7.0.4, )"
             },
@@ -121,7 +113,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

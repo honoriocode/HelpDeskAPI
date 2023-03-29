@@ -1,24 +1,71 @@
-﻿using HelpDeskApi._4___Application._2___Services;
+﻿using HelpDeskApi.Data.DTOs.Chamado;
+using HelpDeskApi.Data.DTOs.Equipamento;
 using Microsoft.AspNetCore.Mvc;
-
-namespace HelpDeskApi._4___Controllers;
 
 [ApiController]
 [Route("chamados")]
 public class ChamadoController : ControllerBase
 {
-    private readonly ChamadoService _chamadoService;
+    private readonly IChamadoService _chamadoService;
 
     public ChamadoController(ChamadoService chamadoService)
     {
         _chamadoService = chamadoService;
     }
 
-    [HttpPost]
-    public IActionResult Adiciona([FromBody] Chamado chamado)
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
     {
-        _chamadoService.AdicionaChamado(chamado);
+        var chamadosDTO = await _chamadoService.GetAll();
+        return Ok(chamadosDTO);
+    }
 
-        return CreatedAtAction(nameof(Adiciona), chamado);
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var chamadoDTO = await _chamadoService.GetById(id);
+        return Ok(chamadoDTO);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody] ChamadoDTO chamadoDTO)
+    {
+        try
+        {
+            await _chamadoService.Add(chamadoDTO);
+            return CreatedAtAction(nameof(GetById), new { id = chamadoDTO.Id }, chamadoDTO);
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(Guid id, [FromBody] ChamadoDTO chamadoDTO)
+    {
+        try
+        {
+            await _chamadoService.Update(id, chamadoDTO);
+            return Ok("O chamado foi atualizado com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        try
+        {
+            await _chamadoService.Delete(id);
+            return Ok("O chamado foi deletado com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 }

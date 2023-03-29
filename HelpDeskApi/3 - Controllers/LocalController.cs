@@ -1,44 +1,71 @@
-﻿using HelpDeskApi._4___Application._2___Services;
+﻿using HelpDeskApi.Data.DTOs;
+using HelpDeskApi.Data.DTOs.Local;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HelpDeskApi._4___Controllers
+[ApiController]
+[Route("locais")]
+public class LocalController : ControllerBase
 {
-    [ApiController]
-    [Route("locais")]
-    public class LocalController : ControllerBase
+    private readonly ILocalService _localService;
+
+    public LocalController(ILocalService localService)
     {
-        private readonly LocalService _localService;
+        _localService = localService;
+    }
 
-        public LocalController(LocalService localService)
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var locaisDTO = await _localService.GetAll();
+        return Ok(locaisDTO);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var localDTO = await _localService.GetById(id);
+        return Ok(localDTO);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody] LocalDTO localDTO)
+    {
+        try
         {
-            _localService = localService;
+            await _localService.Add(localDTO);
+            return CreatedAtAction(nameof(GetById), new { id = localDTO.Id }, localDTO);
         }
-
-        [HttpGet("{id}")]
-        public IActionResult GetById(Guid id)
+        catch (Exception ex)
         {
-            var local = _localService.GetLocalById(id);
-
-            if (local == null)
-            {
-                return NotFound();
-            }
-
-            return Ok(local);
-        }
-
-        [HttpPost]
-        public IActionResult Adiciona([FromBody] Local local)
-        {
-            var result = _localService.AdicionaLocal(local, out var errors);
-
-            if (result is BadRequestObjectResult)
-            {
-                return BadRequest(errors);
-            }
-
-            return result;
+            return BadRequest(ex.Message);
         }
     }
 
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(Guid id, [FromBody] LocalDTO localDTO)
+    {
+        try
+        {
+            await _localService.Update(id, localDTO);
+            return Ok("O local foi atualizado com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        try
+        {
+            await _localService.Delete(id);
+            return Ok("O local foi deletado com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

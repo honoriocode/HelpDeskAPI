@@ -1,24 +1,71 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HelpDeskApi.Data.DTOs.TipoUsuario;
+using Microsoft.AspNetCore.Mvc;
 
-namespace HelpDeskApi._4___Controllers
+
+[ApiController]
+[Route("tipousuarios")]
+public class TipoUsuarioController : ControllerBase
 {
-    [ApiController]
-    [Route("tipoUsuarios")]
-    public class TipoUsuarioController : ControllerBase
+    private readonly ITipoUsuarioService _tipousuarioService;
+
+    public TipoUsuarioController(ITipoUsuarioService tipousuarioService)
     {
-        private readonly TipoUsuarioService tipoUsuarioService;
+        _tipousuarioService = tipousuarioService;
+    }
 
-        public TipoUsuarioController(TipoUsuarioService tipoUsuarioService)
+    [HttpGet]
+    public async Task<IActionResult> GetAll()
+    {
+        var tipousuariosDTO = await _tipousuarioService.GetAll();
+        return Ok(tipousuariosDTO);
+    }
+
+    [HttpGet("{id}")]
+    public async Task<IActionResult> GetById(Guid id)
+    {
+        var tipousuarioDTO = await _tipousuarioService.GetById(id);
+        return Ok(tipousuarioDTO);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Post([FromBody] TipoUsuarioDTO tipousuarioDTO)
+    {
+        try
         {
-            this.tipoUsuarioService = tipoUsuarioService;
+            await _tipousuarioService.Add(tipousuarioDTO);
+            return CreatedAtAction(nameof(GetById), new { id = tipousuarioDTO.Id }, tipousuarioDTO);
         }
-
-        [HttpPost]
-        public IActionResult Adiciona([FromBody] TipoUsuario tipoUsuario)
+        catch (Exception ex)
         {
-            tipoUsuarioService.AdicionaTipoUsuario(tipoUsuario);
-            return Ok();
+            return BadRequest(ex.Message);
         }
     }
 
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Put(Guid id, [FromBody] TipoUsuarioDTO tipousuarioDTO)
+    {
+        try
+        {
+            await _tipousuarioService.Update(id, tipousuarioDTO);
+            return Ok("O Tipo de usuário foi atualizado com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(Guid id)
+    {
+        try
+        {
+            await _tipousuarioService.Delete(id);
+            return Ok("O Tipo de usuário foi deletado com sucesso!");
+        }
+        catch (Exception ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
 }

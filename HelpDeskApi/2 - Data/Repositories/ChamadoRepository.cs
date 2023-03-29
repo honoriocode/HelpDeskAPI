@@ -1,6 +1,8 @@
 ﻿using HelpDeskApi._2___Data.Repositories;
 using HelpDeskApi.Data;
+using HelpDeskApi.Domain.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace HelpDeskApi.Infrastructure.Repositories
 {
@@ -58,6 +60,36 @@ namespace HelpDeskApi.Infrastructure.Repositories
         }
 
         public void Update(object usuario)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<IEnumerable<Chamado>> IRepository<Chamado>.GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IEnumerable<Chamado>> GetManyWhere(Expression<Func<Usuario, bool>> condition)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Chamado> GetOneWhere(Expression<Func<Usuario, bool>> condition)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Chamado> Add(Chamado entidade)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Update(Chamado entidade)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Remove(Chamado entidade)
         {
             throw new NotImplementedException();
         }
