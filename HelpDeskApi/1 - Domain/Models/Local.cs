@@ -1,6 +1,5 @@
 ﻿using HelpDeskApi.Domain.Core;
 using HelpDeskApi.Domain.ValueObjects;
-using System.Text.Json.Serialization;
 
 public class Local : Entidade
 {
@@ -18,4 +17,6 @@ public class Local : Entidade
     public Descricao Descricao { get; private set; } = null!;
     public Endereco Endereco { get; private set; } = null!;
 
+    public IList<Equipamento> Equipamentos { get; private set; }
+    public IList<Chamado> Chamados { get; private set; }
 }

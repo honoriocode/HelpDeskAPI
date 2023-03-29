@@ -1,5 +1,4 @@
-﻿using HelpDeskApi.Data.DTOs;
-using HelpDeskApi.Data.DTOs.Local;
+﻿using HelpDeskApi.Data.DTOs.Local;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]

@@ -1,5 +1,4 @@
 ﻿using HelpDeskApi.Data.DTOs.Chamado;
-using HelpDeskApi.Data.DTOs.Equipamento;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]

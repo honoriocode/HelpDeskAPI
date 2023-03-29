@@ -4,11 +4,12 @@ using System.ComponentModel.DataAnnotations;
 
 public class Equipamento : Entidade
 {
-    public Equipamento(Guid id) : base(id)
-    {
-    }
+    // private Equipamento() { }
+
+    // CONSTRUTOR COM PARAMETROS
 
     public Guid LocalId { get; private set; }
+    public Local Local { get; private set; }
 
     public Fornecedor Fornecedor { get; private set; }
 

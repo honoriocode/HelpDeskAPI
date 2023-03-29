@@ -11,10 +11,11 @@ public class Chamado : Entidade
 
     public Descricao Descricao { get; private set; }
     public Guid UsuarioId { get; private set; }
+    public Usuario Usuario { get; private set; }
     public Guid LocalId { get; private set; }
+    public Local Local { get; private set; }
     public DateTime DataAbertura { get; private set; }
     public DateTime DataEncerramento { get; private set; }
     public ESituacao Situacao{ get; private set; }
     public Detalhes Detalhes { get; private set; }
-
 }
