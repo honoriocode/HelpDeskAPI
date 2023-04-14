@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "vvJnTgazhfj+H7dWOAHucfLU4JR4WejIXzwgcHTpMhlQW9bW9t7JTGTGn0h7uzlQvFdbA5TR3ca8NrSlyVffuQ==",
+  "dgSpecHash": "r5xTM/pP6sYTrO1l66Hp2SRPgignyga4qztnfwLYPTZrPRgoU3rKQT7fK5LFPgi7msE65c+E61B5nLF4MKNCvA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\EnzoGodoy\\Source\\Repos\\HelpDeskAPI\\HelpDeskApi\\HelpDeskApi.csproj",
+  "projectFilePath": "C:\\Users\\EnzoGodoy\\Desktop\\PersonalProjects\\HelpDeskApi\\HelpDeskApi\\HelpDeskApi.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\EnzoGodoy\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\EnzoGodoy\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\12.0.0\\automapper.extensions.microsoft.dependencyinjection.12.0.0.nupkg.sha512",
