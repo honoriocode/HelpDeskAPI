@@ -69,9 +69,11 @@ namespace HelpDeskApi.Data.Repositories
             throw new NotImplementedException();
         }
 
-        Task<IEnumerable<Local>> IRepository<Local>.GetAll()
+        //implementar o async e fazer igual esse método getall nos outros repositories
+        async Task<IEnumerable<Local>> IRepository<Local>.GetAll()
         {
-            throw new NotImplementedException();
+            var locais = await _context.Locais.ToListAsync();
+            return await Task.FromResult<IEnumerable<Local>>(locais);
         }
 
         public Task<IEnumerable<Local>> GetManyWhere(Expression<Func<Usuario, bool>> condition)

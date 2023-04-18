@@ -7,7 +7,7 @@ public class ChamadoController : ControllerBase
 {
     private readonly IChamadoService _chamadoService;
 
-    public ChamadoController(ChamadoService chamadoService)
+    public ChamadoController(IChamadoService chamadoService)
     {
         _chamadoService = chamadoService;
     }

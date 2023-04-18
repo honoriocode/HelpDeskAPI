@@ -42,9 +42,11 @@ namespace HelpDeskApi.Data.Repositories
             _context.SaveChanges();
         }
 
-        Task<IEnumerable<TipoUsuario>> IRepository<TipoUsuario>.GetAll()
+        //implementar o async e fazer igual esse método getall nos outros repositories
+        async Task<IEnumerable<TipoUsuario>> IRepository<TipoUsuario>.GetAll()
         {
-            throw new NotImplementedException();
+            var tiposUsuarios = await _context.TipoUsuarios.ToListAsync();
+            return await Task.FromResult<IEnumerable<TipoUsuario>>(tiposUsuarios);
         }
 
         public Task<IEnumerable<TipoUsuario>> GetManyWhere(Expression<Func<Usuario, bool>> condition)

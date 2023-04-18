@@ -1,4 +1,5 @@
-﻿using HelpDeskApi._2___Data.Repositories;
+﻿using AutoMapper;
+using HelpDeskApi._2___Data.Repositories;
 using HelpDeskApi.Data;
 using HelpDeskApi.Domain.Models;
 using Microsoft.EntityFrameworkCore;
@@ -57,9 +58,11 @@ namespace HelpDesk.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        Task<IEnumerable<Equipamento>> IRepository<Equipamento>.GetAll()
+        //implementar o async e fazer igual esse método getall nos outros repositories
+        async Task <IEnumerable<Equipamento>> IRepository<Equipamento>.GetAll()
         {
-            throw new NotImplementedException();
+            var equipamentos = await _context.Equipamentos.ToListAsync();
+            return await Task.FromResult<IEnumerable<Equipamento>>(equipamentos);
         }
 
         public Task<IEnumerable<Equipamento>> GetManyWhere(Expression<Func<Usuario, bool>> condition)

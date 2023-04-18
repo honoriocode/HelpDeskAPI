@@ -64,9 +64,11 @@ namespace HelpDeskApi.Infrastructure.Repositories
             throw new NotImplementedException();
         }
 
-        Task<IEnumerable<Chamado>> IRepository<Chamado>.GetAll()
+        //implementar o async e fazer igual esse método getall nos outros repositories
+        async Task<IEnumerable<Chamado>> IRepository<Chamado>.GetAll()
         {
-            throw new NotImplementedException();
+            var chamados = await _context.Chamados.ToListAsync();
+            return await Task.FromResult<IEnumerable<Chamado>>(chamados);
         }
 
         public Task<IEnumerable<Chamado>> GetManyWhere(Expression<Func<Usuario, bool>> condition)

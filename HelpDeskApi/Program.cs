@@ -14,16 +14,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddAutoMapper(
-    typeof(ChamadoProfile), 
-    typeof(UsuarioProfile), 
-    typeof(EquipamentoProfile), 
+    typeof(ChamadoProfile),
+    typeof(UsuarioProfile),
+    typeof(EquipamentoProfile),
     typeof(LocalProfile),
     typeof(TipoUsuarioProfile)
     );
 
 var connectionString = builder.Configuration.GetConnectionString("HelpDeskConnection");
 builder.Services.AddDbContext<HelpDeskContext>(
-    opt => opt.UseMySql(connectionString, 
+    opt => opt.UseMySql(connectionString,
     ServerVersion.AutoDetect(connectionString))
     );
 
