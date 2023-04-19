@@ -9,8 +9,11 @@ public class Equipamento : Entidade
     // CONSTRUTOR COM PARAMETROS
 
     public Guid LocalId { get; private set; }
+
+    [Required]
     public Local Local { get; private set; }
 
+    [Required(ErrorMessage = "Insira o fornecedor")]
     public Fornecedor Fornecedor { get; private set; }
 
     [Required(ErrorMessage = "Insira a data de emissão")]

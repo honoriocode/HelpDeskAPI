@@ -5,7 +5,7 @@ namespace HelpDeskApi.Data.DTOs.Equipamento
 {
     public class EquipamentoDTO
     {
-        
+        [Required]
         public Fornecedor Fornecedor { get; private set; }
 
         [Required(ErrorMessage = "Insira a data de emissão")]
@@ -30,9 +30,13 @@ namespace HelpDeskApi.Data.DTOs.Equipamento
         public string Processador { get; private set; } = string.Empty;
 
         //Classe da Entidade sem o id pois é um DTO
+        [Required(ErrorMessage = "Data que foi criado")]
         public DateTime CriadoEm { get; protected set; }
+        [Required(ErrorMessage = "Data que foi atualizado")]
         public DateTime AtualizadoEm { get; protected set; }
+        [Required]
         public bool Status { get; protected set; }
+        [Required]
         public object Id { get; internal set; }
     }
 }
